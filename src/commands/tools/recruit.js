@@ -115,17 +115,17 @@ module.exports = {
             console.log(error);
         }
         await interaction.reply({
-            content: `User Has been recruited Sucesfully`, ephermeral: true,
+            content: `User Has been recruited Sucesfully`, ephemeral: true,
         })
 
       } else {
         await interaction.reply({
-          content: `This person is already a 21st Member`, ephermeral: true,
+          content: `This person is already a 21st Member`, ephemeral: true,
         });
       }
     } else {
       await interaction.reply({
-        content: `Only Section 2 is authorised for use of this command!`, ephermeral: true,
+        content: `Only Section 2 is authorised for use of this command!`, ephemeral: true,
       });
     }
   },

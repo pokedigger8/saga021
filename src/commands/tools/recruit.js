@@ -59,6 +59,7 @@ module.exports = {
         myTarget.roles.add(`809148027331805249`);
         myTarget.roles.add(`809189422675394590`);
         myTarget.roles.add(`809148027331805252`);
+        myTarget.roles.add(`809148027385544705`);
 
         //Channels to send messages
         const unitinfo = client.channels.cache.get(`809148027897905211`);

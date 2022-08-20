@@ -53,7 +53,7 @@ module.exports = {
     if (roles.cache.has(`823553424913596466`)) {
 
       if (!myTarget.roles.cache.some(tw => tw.name === `21STB`)) {
-        //Remove Civvie Tag, Add 21st, Rifleman, Recruit and Reserves Tag
+        //Remove Civvie Tag, Add 21st, Rifleman, Recruit and Reserves Tag, and first platoon Tags
         myTarget.roles.remove(`809148027255783495`);
         myTarget.roles.add(`809148027255783498`);
         myTarget.roles.add(`809148027331805249`);

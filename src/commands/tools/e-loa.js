@@ -8,6 +8,9 @@ module.exports = {
         const { roles } = interaction.member;
         const targetMember = interaction.member;
         const squadLeaderRole = roles.cache.find(seniorLeader => seniorLeader.name === `Senior Leadership`);
+        const workOrder = client.channels.cache.get(`1011724724356796437`);
+        s1Role = roles.cache.get(`823553424581722132`);
+        s3Role = roles.cache.get(`823553424913596466`);
 
         //This if statement is used to figure out what squad element the Person is apart of
         if (roles.cache.find(oneSquad => oneSquad.name === `1st Squad`)) {
@@ -55,15 +58,13 @@ module.exports = {
 
         }
 
-        console.log(`TargetMemberUnit Value: ${targetMemberUnit}`);
-
         //This finds out if the person already has the ELOA Tag or Not. If they do not they are given the ELOA Tag, S1 is asked to give them the ELOA Tag, 
         //Warn their squad leader and assign the tag, or if they do already have it, it gets removed and the same but in the opposite happens.
         
         if (!roles.cache.has(`1002980858694746173`)) {
             targetMember.roles.add(`1002980858694746173`);
 
-            client.channels.cache.get(`823581243571437599`).send(`BE ADVISED S-1, ${targetMember} of ${targetMemberUnit} has gone on an Extended Leave of Absence, please assign them as such on the ORBAT`);
+            workOrder.send(`Target(s): ${s1Role} \n Name: Sága A.I. \n Request Type(s): Start Extended Leave of Absence Assignment \n Request Text: Please Assign ${targetMember} of ${targetMemberUnit} to E-LOA \n Notes: N/A`);
 
             if (!roles.cache.some(reserves => reserves.name === `Reserves`)) {
                 targetMemberSquadChannel.send(`Be Advised ${squadLeaderRole}, ${targetMember} has gone on an Extended Leave of Absence.`);
@@ -75,7 +76,7 @@ module.exports = {
         } else {
             targetMember.roles.remove(`1002980858694746173`);
 
-            client.channels.cache.get(`823581243571437599`).send(`BE ADVISED S-1, ${targetMember} of ${targetMemberUnit} has returned from Extended Leave of Absence, please assign them as such on the ORBAT`);
+            workOrder.send(`Target(s): ${s1Role} \n Name: Sága A.I. \n Request Type(s): End Extended Leave of Absence Assignment \n Request Text: Please Un-Assign ${targetMember} of ${targetMemberUnit} from E-LOA \n Notes: N/A`);
 
             if (!roles.cache.some(reserves => reserves.name === `Reserves`)) {
                 targetMemberSquadChannel.send(`Be Advised ${squadLeaderRole}, ${targetMember} has returned from an Extended Leave of Absence.`);

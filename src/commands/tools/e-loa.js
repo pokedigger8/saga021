@@ -3,7 +3,10 @@ const { SlashCommandBuilder } = require('discord.js');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName(`e-loa`)
-        .setDescription(`Set yourself on extended leave of absence, or remove yourself from extended leave of absence`),
+        .setDescription(`Set yourself on extended leave of absence, or remove yourself from extended leave of absence`)
+        .addIntegerOption((day) => day.setName(`day`).setDescription(`What day you will return from E-LOA`).setMinValue(1).setMaxValue(31).setRequired(true))
+        .addIntegerOption((month) => month.setName(`month`).setDescription(`What Month you will return from E-LOA`).setMinValue(1).setMaxValue(12).setRequired(true))
+        .addIntegerOption((year) => year.setName(`year`).setDescription(`What Year you will return from E-LOA E.G. (2022)`).setMinValue(2022).setMaxValue(2030).setRequired(true)),
     async execute(interaction, client) {
         const { roles } = interaction.member;
         const targetMember = interaction.member;
@@ -11,6 +14,9 @@ module.exports = {
         const workOrder = client.channels.cache.get(`1011724724356796437`);
         s1Role = roles.cache.get(`823553424581722132`);
         s3Role = roles.cache.get(`823553424913596466`);
+        const timeFrameDay = interaction.options.getInteger(`day`);
+        const timeFrameMonth = interaction.options.getInteger(`month`);
+        const timeFrameYear = interaction.options.getInteger(`year`);
 
         //This if statement is used to figure out what squad element the Person is apart of
         if (roles.cache.find(oneSquad => oneSquad.name === `1st Squad`)) {
@@ -64,7 +70,7 @@ module.exports = {
         if (!roles.cache.has(`1002980858694746173`)) {
             targetMember.roles.add(`1002980858694746173`);
 
-            workOrder.send(`Target(s): ${s1Role} \n Name: Sága A.I. \n Request Type(s): Start Extended Leave of Absence Assignment \n Request Text: Please Assign ${targetMember} of ${targetMemberUnit} to E-LOA \n Notes: N/A`);
+            workOrder.send(`Target(s): ${s1Role} \n Name: Sága A.I. \n Request Type(s): Start Extended Leave of Absence Assignment \n Request Text: Please Assign ${targetMember} of ${targetMemberUnit} to E-LOA \n Notes: User is on E-LOA until ${timeFrameDay}/${timeFrameMonth}/${timeFrameYear}`);
 
             if (!roles.cache.some(reserves => reserves.name === `Reserves`)) {
                 targetMemberSquadChannel.send(`Be Advised ${squadLeaderRole}, ${targetMember} has gone on an Extended Leave of Absence.`);

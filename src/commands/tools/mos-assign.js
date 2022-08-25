@@ -41,8 +41,7 @@ module.exports = {
             })
         } else {
             //Assign the Target MOS
-            console.log(mosInput);
-            console.log(targetMOS);
+            const targetMOS = interaction.guild.roles.cache.find(role => role.name === mosInput);
             myTarget.roles.add(targetMOS.id);
 
             workOrder.send(`Target(s): ${s1Role} \n Name: Sága A.I. \n Request Type(s): M.O.S. Training Completed \n Request Text: ${targetMember} has training for the ${mosInput}. please assign their added MOS on the ORBAT \n Notes: N/A`);

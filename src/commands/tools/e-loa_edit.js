@@ -67,7 +67,7 @@ module.exports = {
         if(!roles.cache.has(`1002980858694746173`))
         {
             await interaction.reply({
-                content: "|||ERROR||| You are not on an Active E-LOA trooper. \n Please Consider using the /e-loa command to set one up!", ephemeral: true,
+                content: "ERROR: You are not on an Active E-LOA trooper. \n Please Consider using the /e-loa command to set one up!", ephemeral: true,
             })
         } else {
             workOrder.send(`Target(s): ${s1Role} \n Name: Sága A.I. \n Request Type(s): Edit existing Extended Leave of Absence \n Request Text: ${targetMember} of ${targetMemberUnit} has changed their E-LOA Return date! \n Notes: User is on E-LOA until ${timeFrameDay}/${timeFrameMonth}/${timeFrameYear}`);
@@ -78,7 +78,7 @@ module.exports = {
 
 
             await interaction.reply({
-                content: "|||PROCESS SUCESSFUL||| You're E-LOA Date has been edited, and Section 1 has been Advised", ephemeral: true,
+                content: "PROCESS SUCESSFUL: You're E-LOA Date has been edited, and Section 1 has been Advised", ephemeral: true,
             })
         }
     },

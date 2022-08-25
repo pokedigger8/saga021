@@ -10,23 +10,18 @@ module.exports = {
         const workOrder = client.channels.cache.get(`1011724724356796437`);
         const targetMember = interaction.options.getUser('user');
         const myTarget = interaction.guild.members.cache.get(targetMember.id);
-        console.log(`beans`)
         trainingTag = interaction.guild.roles.cache.find(role => role.name === `Need Training`)
 
         if(!roles.cache.some(role => role.name === `S-3`)) {
-            console.log(`1 A Enter`)
             await interaction.reply({
                 content: "ERROR: You are not authorised to use this Command, This is for Section 3 ONLY!", ephemeral: true,
             })
         } else {
-            console.log(`1 B Enter`)
             if(!myTarget.roles.cache.has(trainingTag.id)) {
-                console.log(`2 A Enter`)
                 await interaction.reply({
                     content: "ERROR: The user is not currently in Any MOS Training as of this time", ephemeral: true,
                 })
             } else {
-                console.log(`2 B Enter`)
                 myTarget.roles.remove(trainingTag);
 
                 await interaction.reply({

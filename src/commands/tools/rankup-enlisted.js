@@ -25,7 +25,6 @@ module.exports = {
             for (let i = 0; i < enlistedRanks.length; i++) {
 
                 if(!myTarget.roles.cache.some(role => role.name === enlistedRanks[i])) {
-                    console.log(`Continue`);
                 } else {
                     userRank = interaction.guild.roles.cache.find(role => role.name === enlistedRanks[i])
                     userRankPosition = i;
@@ -44,12 +43,11 @@ module.exports = {
 
                 const nextRank = interaction.guild.roles.cache.find(role => role.name === enlistedRanks[nextRankPosition]);
 
-                console.log(userRank);
                 myTarget.roles.remove(userRank.id);
 
                 myTarget.roles.add(nextRank.id);
 
-                workOrder.send(`Target(s): ${s1Role} \n Name: Sága A.I. \n Request Type(s): Enlisted Rankup \n Request Text: ${targetMember} has been promoted from ${userRank} to ${nextRank} \n Notes: Please Check the ORBAT Rank Structures for your next rank acronym ${targetMember}! If you are Standard OR-4. If you are Staff or leadership, Please select Corporal, if not, select Specialist rank!`);
+                workOrder.send(`Target(s): ${s1Role} \n Name: Sága A.I. \n Request Type(s): Enlisted Rankup \n Request Text: ${targetMember} has been promoted from ${userRank.name} to ${nextRank.name} \n Notes: Please Check the ORBAT Rank Structures for your next rank acronym ${targetMember}! If you are Standard OR-4. If you are Staff or leadership, Please select Corporal, if not, select Specialist rank!`);
 
                 await interaction.reply({
                     content: "SUCCESSFUL: User has been Ranked up!", ephemeral: true,

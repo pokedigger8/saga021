@@ -48,7 +48,7 @@ module.exports = {
 
                 myTarget.roles.add(prevRank.id);
 
-                workOrder.send(`Target(s): ${s1Role} \n Name: Sága A.I. \n Request Type(s): Enlisted Rankup \n Request Text: ${targetMember} has been demoted from ${userRank} to ${prevRank} \n Notes: Please Check the ORBAT Rank Structures for your rank acronym ${targetMember}! If you are Standard OR-4. If you are Staff or leadership, Please select Corporal, if not, select Specialist rank!`);
+                workOrder.send(`Target(s): ${s1Role} \n Name: Sága A.I. \n Request Type(s): Enlisted Rankup \n Request Text: ${targetMember} has been demoted from ${userRank.name} to ${prevRank.name} \n Notes: Please Check the ORBAT Rank Structures for your rank acronym ${targetMember}! If you are Standard OR-4. If you are Staff or leadership, Please select Corporal, if not, select Specialist rank!`);
 
                 await interaction.reply({
                     content: "SUCCESSFUL: User has been Deranked!", ephemeral: true,

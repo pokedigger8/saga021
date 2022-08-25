@@ -12,7 +12,7 @@ module.exports = {
         const targetMember = interaction.member;
         const squadLeaderRole = roles.cache.find(seniorLeader => seniorLeader.name === `Senior Leadership`);
         const workOrder = client.channels.cache.get(`1011724724356796437`);
-        s1Role = roles.cache.get(`823553424581722132`);
+        s1Role = interaction.guild.roles.cache.get(`823553424581722132`);
         const timeFrameDay = interaction.options.getInteger(`day`);
         const timeFrameMonth = interaction.options.getInteger(`month`);
         const timeFrameYear = interaction.options.getInteger(`year`);

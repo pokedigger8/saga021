@@ -9,7 +9,7 @@ module.exports = {
             const targetMember = interaction.member;
             const squadLeaderRole = roles.cache.find(seniorLeader => seniorLeader.name === `Senior Leadership`);
             const workOrder = client.channels.cache.get(`1011724724356796437`);
-            s1Role = roles.cache.get(`823553424581722132`);
+            s1Role = interaction.guild.roles.cache.get(`823553424581722132`);
             
             //This if statement is used to figure out what squad element the Person is apart of
             if (roles.cache.find(oneSquad => oneSquad.name === `1st Squad`)) {

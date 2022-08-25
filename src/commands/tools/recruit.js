@@ -62,8 +62,8 @@ module.exports = {
         myTarget.roles.add(`809148027385544705`);
 
         //Roles we need to Mention
-        s1Role = roles.cache.get(`823553424581722132`);
-        s3Role = roles.cache.get(`823553424913596466`);
+        s1Role = interaction.guild.roles.cache.get(`823553424581722132`);
+        s3Role = interaction.guild.roles.cache.get(`823553449227714571`);
 
         //Channels to send messages
         const unitinfo = client.channels.cache.get(`809148027897905211`);

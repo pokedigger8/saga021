@@ -2,8 +2,8 @@ const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName(`e-loa_edit`)
-        .setDescription(`Change the Return Date of an Existing E-LOA`),
+        .setName(`loa-end`)
+        .setDescription(`end your Standard LOA early`),
         async execute(interaction, client) {
             const { roles } = interaction.member;
             const targetMember = interaction.member;
@@ -56,15 +56,14 @@ module.exports = {
                 targetMemberUnit = roles.cache.find(reserves => reserves.name === `Reserves`);
             }
 
-            workOrder.send(`Target(s): ${s1Role} \n Name: Sága A.I. \n Request Type(s): Leave of Absence \n Request Text: ${targetMember} of ${targetMemberUnit} is going on a Leave of Absence \n Notes: Reminder, A leave of Absence only applies for 1 Week (1 Operation)`);
+            workOrder.send(`Target(s): ${s1Role} \n Name: Sága A.I. \n Request Type(s): End Leave of Absence \n Request Text: ${targetMember} of ${targetMemberUnit} has ended their Leave Of Absence \n Notes: Reminder, A leave of Absence only applies for 1 Week (1 Operation)`);
 
             if (!roles.cache.some(reserves => reserves.name === `Reserves`)) {
-                targetMemberSquadChannel.send(`Be Advised ${squadLeaderRole}, ${targetMember} has gone on an Leave of Absence for this week`);
+                targetMemberSquadChannel.send(`Be Advised ${squadLeaderRole}, ${targetMember} has ended their Leave of Absence`);
             } else return;
 
-
             await interaction.reply({
-                content: "PROCESS SUCESSFUL: You're Leave of Absence has been processed, and Section 1 has been Advised", ephemeral: true,
+                content: "PROCESS SUCESSFUL: You're Leave of Absence has been ended, and Section 1 has been Advised", ephemeral: true,
             })
         },
 };

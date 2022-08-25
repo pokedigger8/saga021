@@ -2,8 +2,8 @@ const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName(`e-loa`)
-        .setDescription(`Set yourself on extended leave of absence, or remove yourself from extended leave of absence`)
+        .setName(`e-loa_edit`)
+        .setDescription(`Change the Return Date of an Existing E-LOA`)
         .addIntegerOption((day) => day.setName(`day`).setDescription(`What day you will return from E-LOA`).setMinValue(1).setMaxValue(31).setRequired(true))
         .addIntegerOption((month) => month.setName(`month`).setDescription(`What Month you will return from E-LOA`).setMinValue(1).setMaxValue(12).setRequired(true))
         .addIntegerOption((year) => year.setName(`year`).setDescription(`What Year you will return from E-LOA E.G. (2022)`).setMinValue(2022).setMaxValue(2030).setRequired(true)),
@@ -60,35 +60,25 @@ module.exports = {
 
         } else {
             targetMemberUnit = roles.cache.find(reserves => reserves.name === `Reserves`);
-
         }
 
-        //This finds out if the person already has the ELOA Tag or Not. If they do not they are given the ELOA Tag, S1 is asked to give them the ELOA Tag, 
-        //Warn their squad leader and assign the tag, or if they do already have it, it gets removed and the same but in the opposite happens.
-        
-        if (!roles.cache.has(`1002980858694746173`)) {
-            targetMember.roles.add(`1002980858694746173`);
+        //Check if person is currently on E-LOA
 
-            workOrder.send(`Target(s): ${s1Role} \n Name: Sága A.I. \n Request Type(s): Start Extended Leave of Absence Assignment \n Request Text: Please Assign ${targetMember} of ${targetMemberUnit} to E-LOA \n Notes: User is on E-LOA until ${timeFrameDay}/${timeFrameMonth}/${timeFrameYear}`);
-
-            if (!roles.cache.some(reserves => reserves.name === `Reserves`)) {
-                targetMemberSquadChannel.send(`Be Advised ${squadLeaderRole}, ${targetMember} has gone on an Extended Leave of Absence.`);
-            } else return;
-
+        if(!roles.cache.has(`1002980858694746173`))
+        {
             await interaction.reply({
-                content: `You have been put on Extended Leave of Absence, Good luck trooper!`, ephemeral: true,
+                content: "|||ERROR||| You are not on an Active E-LOA trooper. \n Please Consider using the /e-loa command to set one up!", ephemeral: true,
             })
         } else {
-            targetMember.roles.remove(`1002980858694746173`);
-
-            workOrder.send(`Target(s): ${s1Role} \n Name: Sága A.I. \n Request Type(s): End Extended Leave of Absence Assignment \n Request Text: Please Un-Assign ${targetMember} of ${targetMemberUnit} from E-LOA \n Notes: N/A`);
+            workOrder.send(`Target(s): ${s1Role} \n Name: Sága A.I. \n Request Type(s): Edit existing Extended Leave of Absence \n Request Text: ${targetMember} of ${targetMemberUnit} has changed their E-LOA Return date! \n Notes: User is on E-LOA until ${timeFrameDay}/${timeFrameMonth}/${timeFrameYear}`);
 
             if (!roles.cache.some(reserves => reserves.name === `Reserves`)) {
-                targetMemberSquadChannel.send(`Be Advised ${squadLeaderRole}, ${targetMember} has returned from an Extended Leave of Absence.`);
+                targetMemberSquadChannel.send(`Be Advised ${squadLeaderRole}, ${targetMember} has edited their E-LOA.`);
             } else return;
 
+
             await interaction.reply({
-                content: `You have been removed from Extended Leave of Absence, Welcome back trooper!`, ephemeral: true,
+                content: "|||PROCESS SUCESSFUL||| You're E-LOA Date has been edited, and Section 1 has been Advised", ephemeral: true,
             })
         }
     },

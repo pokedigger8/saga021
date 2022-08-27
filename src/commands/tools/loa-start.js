@@ -7,7 +7,7 @@ module.exports = {
         async execute(interaction, client) {
             const { roles } = interaction.member;
             const targetMember = interaction.member;
-            const squadLeaderRole = roles.cache.find(seniorLeader => seniorLeader.name === `Senior Leadership`);
+            const squadLeaderRole = interaction.guild.roles.cache.find(seniorLeader => seniorLeader.name === `Senior Leadership`);
             const workOrder = client.channels.cache.get(`1011724724356796437`);
             s1Role = interaction.guild.roles.cache.get(`823553424581722132`);
             
@@ -56,7 +56,7 @@ module.exports = {
                 targetMemberUnit = roles.cache.find(reserves => reserves.name === `Reserves`);
             }
 
-            workOrder.send(`Target(s): ${s1Role} \n Name: Sága A.I. \n Request Type(s): Start Leave of Absence \n Request Text: ${targetMember} of ${targetMemberUnit} is going on a Leave of Absence \n Notes: Reminder, A leave of Absence only applies for 1 Week (1 Operation)`);
+            workOrder.send(`Target(s): ${s1Role} \n Name: Sága A.I. \n Request Type(s): Start Leave of Absence \n Request Text: ${targetMember} of ${targetMemberUnit.name} is going on a Leave of Absence \n Notes: Reminder, A leave of Absence only applies for 1 Week (1 Operation)`);
 
             if (!roles.cache.some(reserves => reserves.name === `Reserves`)) {
                 targetMemberSquadChannel.send(`Be Advised ${squadLeaderRole}, ${targetMember} has gone on an Leave of Absence for this week`);

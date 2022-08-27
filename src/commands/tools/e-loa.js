@@ -10,7 +10,7 @@ module.exports = {
     async execute(interaction, client) {
         const { roles } = interaction.member;
         const targetMember = interaction.member;
-        const squadLeaderRole = roles.cache.find(seniorLeader => seniorLeader.name === `Senior Leadership`);
+        const squadLeaderRole = interaction.guild.roles.cache.find(seniorLeader => seniorLeader.name === `Senior Leadership`);
         const workOrder = client.channels.cache.get(`1011724724356796437`);
         s1Role = interaction.guild.roles.cache.get(`823553424581722132`);
         const timeFrameDay = interaction.options.getInteger(`day`);
@@ -81,7 +81,7 @@ module.exports = {
         } else {
             targetMember.roles.remove(`1002980858694746173`);
 
-            workOrder.send(`Target(s): ${s1Role} \n Name: Sága A.I. \n Request Type(s): End Extended Leave of Absence Assignment \n Request Text: Please Un-Assign ${targetMember} of ${targetMemberUnit} from E-LOA \n Notes: N/A`);
+            workOrder.send(`Target(s): ${s1Role} \n Name: Sága A.I. \n Request Type(s): End Extended Leave of Absence Assignment \n Request Text: Please Un-Assign ${targetMember} of ${targetMemberUnit.name} from E-LOA \n Notes: N/A`);
 
             if (!roles.cache.some(reserves => reserves.name === `Reserves`)) {
                 targetMemberSquadChannel.send(`Be Advised ${squadLeaderRole}, ${targetMember} has returned from an Extended Leave of Absence.`);

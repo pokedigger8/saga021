@@ -10,7 +10,7 @@ module.exports = {
     async execute(interaction, client) {
         const { roles } = interaction.member;
         const targetMember = interaction.member;
-        const squadLeaderRole = roles.cache.find(seniorLeader => seniorLeader.name === `Senior Leadership`);
+        const squadLeaderRole = interaction.guild.roles.cache.find(seniorLeader => seniorLeader.name === `Senior Leadership`);
         const workOrder = client.channels.cache.get(`1011724724356796437`);
         s1Role = interaction.guild.roles.cache.get(`823553424581722132`);
         const timeFrameDay = interaction.options.getInteger(`day`);
@@ -70,7 +70,7 @@ module.exports = {
                 content: "ERROR: You are not on an Active E-LOA trooper. \n Please Consider using the /e-loa command to set one up!", ephemeral: true,
             })
         } else {
-            workOrder.send(`Target(s): ${s1Role} \n Name: Sága A.I. \n Request Type(s): Edit existing Extended Leave of Absence \n Request Text: ${targetMember} of ${targetMemberUnit} has changed their E-LOA Return date! \n Notes: User is on E-LOA until ${timeFrameDay}/${timeFrameMonth}/${timeFrameYear}`);
+            workOrder.send(`Target(s): ${s1Role} \n Name: Sága A.I. \n Request Type(s): Edit existing Extended Leave of Absence \n Request Text: ${targetMember} of ${targetMemberUnit.name} has changed their E-LOA Return date! \n Notes: User is on E-LOA until ${timeFrameDay}/${timeFrameMonth}/${timeFrameYear}`);
 
             if (!roles.cache.some(reserves => reserves.name === `Reserves`)) {
                 targetMemberSquadChannel.send(`Be Advised ${squadLeaderRole}, ${targetMember} has edited their E-LOA.`);

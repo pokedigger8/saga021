@@ -7,10 +7,10 @@ module.exports = {
         .addUserOption((user) => user.setName(`user`).setDescription(`Select the User who has finished their MOS Training, which will un-assign the training role`).setRequired(true)),
     async execute(interaction, client) {
         const { roles } = interaction.member;
-        const workOrder = client.channels.cache.get(`1011724724356796437`);
+        const workOrder = client.channels.cache.get(`1064386986896535572`);
         const targetMember = interaction.options.getUser('user');
         const myTarget = interaction.guild.members.cache.get(targetMember.id);
-        trainingTag = interaction.guild.roles.cache.find(role => role.name === `Need Training`)
+        trainingTag = interaction.guild.roles.cache.find(role => role.name === `Requested Training`)
 
         if(!roles.cache.some(role => role.name === `S-3`)) {
             await interaction.reply({

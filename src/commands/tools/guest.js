@@ -9,9 +9,9 @@ module.exports = {
         const { roles } = interaction.member;
         const target = interaction.options.getUser(`user`);
         const myTarget = interaction.guild.members.cache.get(target.id);
-        s2Role = interaction.guild.roles.cache.get(`823553424913596466`);
-        civillian = interaction.guild.roles.cache.get(`809148027255783495`);
-        guestRole = interaction.guild.roles.cache.get(`809148027255783494`);
+        s2Role = interaction.guild.roles.cache.get(`1064368417546706955`);
+        civillian = interaction.guild.roles.cache.get(`1064364346781741076`);
+        guestRole = interaction.guild.roles.cache.get(`1064363762120917004`);
 
         if (!roles.cache.has(s2Role.id)) {
 

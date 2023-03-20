@@ -17,6 +17,7 @@ module.exports = {
           "Marksman",
           "S.A.R.C.",
           "R.T.O.",
+          "Aerial Operator",
         ];
         const filtered = choices.filter((choice) =>
           choice.startsWith(focusedValue)
@@ -26,12 +27,12 @@ module.exports = {
         );
     },
     async execute(interaction, client) {
-        s1Role = interaction.guild.roles.cache.get(`823553424581722132`);
-        s3Role = interaction.guild.roles.cache.get(`823553449227714571`);
+        s1Role = interaction.guild.roles.cache.get(`1064368351679369359`);
+        s3Role = interaction.guild.roles.cache.get(`1064368420981833729`);
         const targetMember = interaction.options.getUser('user');
         const mosInput = interaction.options.getString(`mos`);
         const myTarget = interaction.guild.members.cache.get(targetMember.id);
-        const workOrder = client.channels.cache.get(`1011724724356796437`);
+        const workOrder = client.channels.cache.get(`1064386986896535572`);
         const { roles } = interaction.member;
 
         if(!roles.cache.has(s3Role.id)) {
@@ -44,7 +45,7 @@ module.exports = {
             const targetMOS = interaction.guild.roles.cache.find(role => role.name === mosInput);
             myTarget.roles.add(targetMOS.id);
 
-            workOrder.send(`Target(s): ${s1Role} \n Name: Sága A.I. \n Request Type(s): M.O.S. Training Completed \n Request Text: ${targetMember} has training for the ${mosInput}. please assign their added MOS on the ORBAT \n Notes: N/A`);
+            workOrder.send(`Target(s): ${s1Role} \n Name: ${targetMember} \n Request Type(s): M.O.S. Training Completed \n Request Text: ${targetMember} has training for the ${mosInput.name}. please assign their added MOS on the ORBAT \n Notes: N/A`);
 
             await interaction.reply({
                 content: "SUCCESS: You have been assigned the MOS Role and the ORBAT Will be updated by Section 1!", ephemeral: true,

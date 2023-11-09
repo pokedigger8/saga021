@@ -18,43 +18,38 @@ module.exports = {
         const timeFrameYear = interaction.options.getInteger(`year`);
 
         //This if statement is used to figure out what squad element the Person is apart of
-        if (roles.cache.find(oneSquad => oneSquad.name === `MSOT-1`)) {
-            targetMemberUnit = roles.cache.find(oneSquad => oneSquad.name === `MSOT-1`);
+        if (roles.cache.find(oneSquad => oneSquad.name === `MSWT-1`)) {
+            targetMemberUnit = roles.cache.find(oneSquad => oneSquad.name === `MSWT-1`);
 
             targetMemberSquadChannel = client.channels.cache.get(`1064389998570373140`);
 
-        } else if (roles.cache.find(twoSquad => twoSquad.name === `MSOT-2`)) {
-            targetMemberUnit = roles.cache.find(twoSquad => twoSquad.name === `MSOT-2`);
+        } else if (roles.cache.find(twoSquad => twoSquad.name === `MSWT-2`)) {
+            targetMemberUnit = roles.cache.find(twoSquad => twoSquad.name === `MSWT-2`);
 
             targetMemberSquadChannel = client.channels.cache.get(`1064390085631545484`);
 
-        } else if (roles.cache.find(threeSquad => threeSquad.name === `MSOT-3`)) {
-            targetMemberUnit = roles.cache.find(threeSquad => threeSquad.name === `MSOT-3`);
+        } else if (roles.cache.find(threeSquad => threeSquad.name === `MSWT-3`)) {
+            targetMemberUnit = roles.cache.find(threeSquad => threeSquad.name === `MSWT-3`);
 
             targetMemberSquadChannel = client.channels.cache.get(`1064390117093023776`);
 
-        } else if (roles.cache.find(fourSquad => fourSquad.name === `MSOT-4`)) {
-            targetMemberUnit = roles.cache.find(fourSquad => fourSquad.name === `MSOT-4`);
+        } else if (roles.cache.find(fourSquad => fourSquad.name === `MSWT-4`)) {
+            targetMemberUnit = roles.cache.find(fourSquad => fourSquad.name === `MSWT-4`);
 
             targetMemberSquadChannel = client.channels.cache.get(`1087263296157130792`);
 
-        } else if (roles.cache.find(mag => mag.name === `MAG-14`)) {
-            targetMemberUnit = roles.cache.find(vulture => mag.name === `MAG-14`);
-
-            targetMemberSquadChannel = client.channels.cache.get(`1064390154711748638`);
-
-        }  else if (roles.cache.find(raidcom => raidcom.name === `RAIDCOM`)) {
-            targetMemberUnit = roles.cache.find(raidcom => raidcom.name === `RAIDCOM`);
+        } else if (roles.cache.find(raidcom => raidcom.name === `MSWC`)) {
+            targetMemberUnit = roles.cache.find(raidcom => raidcom.name === `MSWC`);
 
             targetMemberSquadChannel = client.channels.cache.get(`1064387033860157440`);
 
-        } else if (roles.cache.find(commandteam => commandteam.name === `MSOCT`)) {
-            targetMemberUnit = roles.cache.find(commandteam => commandteam.name === `MSOCT`);
+        } else if (roles.cache.find(commandteam => commandteam.name === `MSWCT`)) {
+            targetMemberUnit = roles.cache.find(commandteam => commandteam.name === `MSWCT`);
 
             targetMemberSquadChannel = client.channels.cache.get(`1064390222021931138`);
 
         } else {
-            targetMemberUnit = roles.cache.find(reserves => reserves.name === `MSOR`);
+            targetMemberUnit = roles.cache.find(reserves => reserves.name === `Reserves`);
         }
 
         //Check if person is currently on E-LOA

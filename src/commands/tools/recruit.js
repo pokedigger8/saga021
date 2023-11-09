@@ -26,15 +26,11 @@ module.exports = {
   async autocomplete(interaction, client) {
     const focusedValue = interaction.options.getFocused();
     const choices = [
-      "Rifleman",
-      "Grenadier",
+      "Operator",
       "S.A.W.",
       "Anti-Tank",
-      "Breacher",
       "Marksman",
-      "S.A.R.C.",
-      "R.T.O.",
-      "Aerial Operator",
+      "S.A.R.C."
     ];
     const filtered = choices.filter((choice) =>
       choice.startsWith(focusedValue)
@@ -55,68 +51,52 @@ module.exports = {
 
       if (!myTarget.roles.cache.some(tw => tw.name === `Unit Member`)) {
         //Remove Civvie Tag, Add 21st, Rifleman, Recruit and Reserves Tag, and first platoon Tags
-        myTarget.roles.remove(`1064364346781741076`);
-        myTarget.roles.add(`1064363798007386234`);
-        myTarget.roles.add(`1064366996701065257`);
-        myTarget.roles.add(`1064365917959618604`);
-        myTarget.roles.add(`1064369402579001355`);
+        myTarget.roles.remove(`1064364346781741076`); //Remove Civvie Role
+        myTarget.roles.add(`1064363798007386234`); //Add Unit Member
+        myTarget.roles.add(`1064365917959618604`); //Add Candidate Role
+        myTarget.roles.add(`1064369402579001355`); //Add Reserve Role
 
         //Roles we need to Mention
-        s1Role = interaction.guild.roles.cache.get(`1064368351679369359`);
-        s3Role = interaction.guild.roles.cache.get(`1064368420981833729`);
+        s1Role = interaction.guild.roles.cache.get(`1064368351679369359`); //S3 Role
+        s3Role = interaction.guild.roles.cache.get(`1064368420981833729`); // S1 Role
 
         //Channels to send messages
-        const unitinfo = client.channels.cache.get(`1064388216842633327`);
-        const s3recruits = client.channels.cache.get(`1064419017403662346`);
-        const workChannel = client.channels.cache.get(`1064386986896535572`);
-        const regulations = client.channels.cache.get(`1064380304896311326`);
-        const unitHandbooks = client.channels.cache.get(`1064413208699482174`);
-        const unitFAQ = client.channels.cache.get(`1069955157309267979`);
-        const thoughtsAndConcerns = client.channels.cache.get(`1065982079625613363`);
+        const unitinfo = client.channels.cache.get(`1064388216842633327`); //Unit-Info Channel
+        const s3recruits = client.channels.cache.get(`1064419017403662346`); //S3 Recruitment Channel
+        const workChannel = client.channels.cache.get(`1064386986896535572`); //Work Orders Channel
+        const regulations = client.channels.cache.get(`1064380304896311326`); //Unit Regulations
+        const unitHandbooks = client.channels.cache.get(`1064413208699482174`); //Unit Handbooks Channel
+        const unitFAQ = client.channels.cache.get(`1069955157309267979`); //FAQ Channel
+        const thoughtsAndConcerns = client.channels.cache.get(`1065982079625613363`); //Thoughts and concerns channel
 
         //Get the Desired MOS
-        const occupation = interaction.options.getString(`mos`);
+        const occupation = interaction.options.getString(`mos`); //Gets the string of the Chosen MOS from the command.
 
         //Send the Standard Welcome Message
-        client.channels.cache.get(`1064384325912645726`).send(`Welcome ${target} to the 2nd Marine Raider Battalion! \n Please change your name to Rct. [Name Initial] "[OPTIONAL NICKNAME]" [Last Name] as per our name ${regulations}. \n When possible, please get in contact with Training and Doctrine Staff [TRADOC] in ${s3recruits} channel to organise a training. \n Mods and other useful and important information can be found in both ${unitinfo} and ${unitHandbooks}.\n ${workChannel} Will contain work order that will typically concern most aspects of what happens to you in the unit. If you want to go on leave, you can fill a leave of absence request there. The pinned messages will typically help you fill one out either manually or with help of myself, The Silas AI. \n ${unitFAQ} also contains useful info if needed. \n Feel free to ask or recommend anything especially inside of ${thoughtsAndConcerns}!`);
+        client.channels.cache.get(`1064384325912645726`).send(`Welcome ${target} to Special Operations Company - Viper! \n Please change your name to Can. [Name Initial] "[OPTIONAL NICKNAME]" [Last Name] as per our name ${regulations}. \n When possible, please get in contact with Training and Doctrine Staff [TRADOC] in ${s3recruits} channel to organise a training. \n Mods and other useful and important information can be found in both ${unitinfo} and ${unitHandbooks}.\n ${workChannel} Will contain work order that will typically concern most aspects of what happens to you in the unit. If you want to go on leave, you can fill a leave of absence request there. The pinned messages will typically help you fill one out either manually or with help of myself, The Silas AI. \n ${unitFAQ} also contains useful info if needed. \n Feel free to ask or recommend anything especially inside of ${thoughtsAndConcerns}!`);
 
         //Check what MOS the target wants to be, Assign Extra MOS Role and send slightly different advisory role.
 
-        if (occupation == `Rifleman`) {
-          workChannel.send(`Target(s): ${s1Role} , ${s3Role} \nName: Sága A.I. \nRequest Type(s): ORBAT Assignment, S-3 Trainee Arrival Reminder \nRequest Text: Please Assign ${target} to ORBAT and Organise a Training \nNote: Trainee joined as a Rifleman`);
-        } else if (occupation == `Grenadier`) {
-            //Set Grenadier Role
-            myTarget.roles.add(`1064367026241544243`);
+        if (occupation == `Operator`) {
+          workChannel.send(`Target(s): ${s1Role} , ${s3Role} \nName: Sága A.I. \nRequest Type(s): ORBAT Assignment, S-3 Trainee Arrival Reminder \nRequest Text: Please Assign ${target} to ORBAT and Organise a Training \nNote: Trainee joined as an Operator`);
 
-            workChannel.send(`Target(s): ${s1Role} , ${s3Role} \nName: ${target} \nRequest Type(s): ORBAT Assignment, S-3 Trainee Arrival Reminder \nRequest Text: Please Assign ${target} to ORBAT and Organise a Training \nNote: Trainee joined as a Grenadier`);
-        } else if (occupation == `S.A.W.`) {
-            myTarget.roles.add(`1064367028883963935`);
+          myTarget.roles.add(`1064366996701065257`); //Add Operator Role
+        }  else if (occupation == `S.A.W.`) {
+            myTarget.roles.add(`1064367028883963935`);//Add SAW Role
 
             workChannel.send(`Target(s): ${s1Role} , ${s3Role} \nName: ${target} \nRequest Type(s): ORBAT Assignment, S-3 Trainee Arrival Reminder \nRequest Text: Please Assign ${target} to ORBAT and Organise a Training \nNote: Trainee joined as a S.A.W.`);
         } else if (occupation == `Anti-Tank`) {
-            myTarget.roles.add(`1064367029718634517`);
+            myTarget.roles.add(`1064367029718634517`); //Add AT Role
 
             workChannel.send(`Target(s): ${s1Role} , ${s3Role} \nName: ${target} \nRequest Type(s): ORBAT Assignment, S-3 Trainee Arrival Reminder \nRequest Text: Please Assign ${target} to ORBAT and Organise a Training \nNote: Trainee joined as an Anti-Tank`);
-        } else if (occupation == `Breacher`) {
-            myTarget.roles.add(`1064367858123030552`);
-
-            workChannel.send(`Target(s): ${s1Role} , ${s3Role} \nName: ${target} \nRequest Type(s): ORBAT Assignment, S-3 Trainee Arrival Reminder \nRequest Text: Please Assign ${target} to ORBAT and Organise a Training \nNote: Trainee joined as a Breacher`);
         } else if (occupation == `Marksman`) {
-            myTarget.roles.add(`1064367400876777542`);
+            myTarget.roles.add(`1064367400876777542`); //Add Marksman Role
 
             workChannel.send(`Target(s): ${s1Role} , ${s3Role} \nName: ${target} \nRequest Type(s): ORBAT Assignment, S-3 Trainee Arrival Reminder \nRequest Text: Please Assign ${target} to ORBAT and Organise a Training \nNote: Trainee joined as a Marksman`);
         } else if (occupation == `S.A.R.C.`) {
-            myTarget.roles.add(`1064367872463343626`);
+            myTarget.roles.add(`1064367872463343626`); //Add SARC Role
 
             workChannel.send(`Target(s): ${s1Role} , ${s3Role} \nName: ${target} \nRequest Type(s): ORBAT Assignment, S-3 Trainee Arrival Reminder \nRequest Text: Please Assign ${target} to ORBAT and Organise a Training \nNote: Trainee joined as a S.A.R.C.`);
-        } else if (occupation == `R.T.O.`) {
-            myTarget.roles.add(`1064367869640581240`);
-
-            workChannel.send(`Target(s): ${s1Role} , ${s3Role} \nName: ${target} \nRequest Type(s): ORBAT Assignment, S-3 Trainee Arrival Reminder \nRequest Text: Please Assign ${target} to ORBAT and Organise a Training \nNote: Trainee joined as an R.T.O.`);
-        } else if (occupation == `Aerial Operator`) {
-          myTarget.roles.add(`1064367510079688774`);
-
-          workChannel.send(`Target(s): ${s1Role} , ${s3Role} \nName: ${target} \nRequest Type(s): ORBAT Assignment, S-3 Trainee Arrival Reminder \nRequest Text: Please Assign ${target} to ORBAT and Organise a Training \nNote: Trainee joined as an Aerial Operator`);
         } else {
             console.log(error);
         }
@@ -126,7 +106,7 @@ module.exports = {
 
       } else {
         await interaction.reply({
-          content: `This person is already a 2nd MRB Member`, ephemeral: true,
+          content: `This person is already a Member`, ephemeral: true,
         });
       }
     } else {
